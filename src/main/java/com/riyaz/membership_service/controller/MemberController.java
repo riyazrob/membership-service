@@ -2,8 +2,7 @@ package com.riyaz.membership_service.controller;
 
 import com.riyaz.membership_service.model.Member;
 import com.riyaz.membership_service.service.MemberService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,5 +18,16 @@ public class MemberController {
     @GetMapping("/members")
     public List<Member> getMembers() {
         return memberService.getMembers();
+    }
+
+    @PostMapping("/members")
+    public Member addMember(@RequestBody Member member) {
+        return memberService.addMember(member);
+    }
+
+    @DeleteMapping("/members/{id}")
+    public String deleteMember(@PathVariable Long id) {
+        memberService.deleteMember(id);
+        return "Member deleted successfully";
     }
 }
